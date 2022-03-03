@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>MY Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="salman,services, work, contact">
+  <meta name="author" content="salman">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link id="css" href="/stylesheets/styles.css" rel="stylesheet">
+  
+  <link href="/fonts/fontawesome-free-6.0.0-beta3-web/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1 class="logo">ALWAJEEH</h1>
+      <ul class="nav-links">
+        <li class="nav-link"><a href="#home">Home</a></li>
+        <li class="nav-link"><a href="#about">About</a></li>
+        <li class="nav-link"><a href="#services">Services</a></li>
+        <li class="nav-link"><a href="#contact">Contact </a></li>
+      </ul>
+    </nav>
+    <label class="switch">
+      <input id="switch-btn" onclick="changeTheme()" type="checkbox" checked>
+      <span class="slider round"></span>
+    </label>
+  </header>
+  <main>
+    <section id="home">
+      <div class="banner">
+      </div>
+      <div class="data">
+        <h3>Hello World</h3>
+        <img id="salman" src="/images/IMG-20210619-WA0015.jpg">
+        <h2>I'M</h2>
+        <h1> Salman Alwajeeh</h1>
+        <h5>"Fullstack Web Developer" </h5>
+      </div>
+    </section>
+    <section id="about">
+      <div class="intro">
+        <h1>About Me</h1>
+        <h5> I'm salman abdoh hasan alwageeh ,<br>I'm front and backend develober<br>I'm grapgic desiner
+        </h5>
+      </div>
+      <div class="about-skills">
+        <img  src="/images/customer-satisfaction.png">
+      
+        <ul>
+          <h1>My Skills</h1>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>Team Leader</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>solving problems</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>Data analysis</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>Cloud computing</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>Systems and networks</span>
+          </li>
+        </ul>
+      </div>
+      <div class="about-expriance">
+        <img src="/images/interaction.png">
+        <ul>
+          <h1>exprinces</h1>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>html</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>javascript</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>php</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>sql+</span>
+          </li>
+          <li>
+            <i class="fas fa-angle-double-right"></i>
+            <span>css</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="services">
+      <div class="srrvices1">
+        <h1>My Services</h1>
+        <div class="service">
+
+          <div class="service-desc">
+            <div><img src="/images//images.jfif">
+              <h3>flutter developer</h3>
+            </div>
+            <div><img src="/images/android.png">
+
+              <h3>android developer</h3>
+            </div>
+            <div><img src="/images/php.png">
+
+              <h3>backend developer</h3>
+            </div>
+            <div><img src="/images/github.png">
+
+              <h3>github</h3>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <div id="works">
+        <div class="srrvices">
+          <div class="service">
+            <h1>My Works</h1>
+            <div class="service-desc1">
+
+              <div><img src="/images/2.png">
+
+                <h3>coffee</h3>
+              </div>
+
+              <div><img src="/images/1.png">
+
+                <h3>group 1</h3>
+              </div>
+              <div><img src="/images/ا12.PNG">
+
+                <h3>Medicamp</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section id="contact">
+      <div class="form">
+        <form  id="form" name="form1" onsubmit=" valid();">
+          <h1>Contact Me^_^</h1>
+          <!--<label for="fname"> name:</label><br>-->
+          <input type="text" id="fname" name="fname" placeholder="name" onkeyup="nameval()"><br>
+          <div id="message"></div><br><br>
+          <!--<label for="fname">subject :</label><br>-->
+          <input type="text" id="fname3" name="fname3" placeholder="subject" onkeyup="nameval2()"><br>
+          <div id="message3"></div><br>
+         <br>
+          <textarea type="text" id="fname2" name="fname2" onkeyup="ValidText()" placeholder="massage"></textarea><br>
+          <div id="message2"></div>
+
+          <button type="submit" id="bt1" onsubmit="return valid();" >"SEND!"</button>
+         
+        </form>
+      </div>
+      <div class="image"></div>
+      <footer>
+        <div class="footer-up">
+          <p>copy right saved for SalmanWajeeh @2022</p>
+        </div>
+        <div class="footer-down">
+          <ul class="social-links">
+            <li><a class="social-link" href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a class="social-link" href="#"><i class="fab fa-whatsapp"></i></a></li>
+            <li><a class="social-link" href="#"><i class="fab fa-youtube"></i></a></li>
+            <li><a class="social-link" href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a class="social-link" href="#"><i class="fab fa-linked-in"></i></a></li>
+          </ul>
+        </div>
+      </footer>
+    </section>
+  </main>
+  <script>
+
+    function valid() {
+      var form = document.getElementById("form");
+      var name = document.form1.fname.value;
+      var name2 = document.form1.fname3.value;
+
+      var textarea1 = document.getElementById("fname2;").value;
+
+      var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+      console.log(strongRegex);
+      if (name==" " && name2==" " && textarea1==" " ) {
+                document.getElementById("message").innerHTML = "<h6 style='color:white;'>name can't be blank, this file requaiyellow</h6>";
+                document.getElementById("message3").innerHTML = "<h6 style='color:black;'>subject can't be blank, this file requaiyellow</h6>";
+                document.getElementById("message2").innerHTML = "<h6 style='color:black;'>text can't be blank, this file requaiyellow</h6>";
+               
+
+                return false;}
+      if (name==" " ) {
+        document.getElementById("message").innerHTML = "<h6 style='color:white;'>name can't be blank, this file requaiyellow</h6>";
+
+        return false;
+      }
+      if (name2==" " ) {
+        document.getElementById("message3").innerHTML = "<h6 style='color:white;'>subject can't be blank, this file requaiyellow</h6>";
+
+        return false;
+      }
+      else if (textarea1==" ") {
+
+        document.getElementById("message2").innerHTML = "<h6 style='color:white;'>textarea can't be blank, this file requaiyellow</h6>";
+        return false;
+
+      }
+
+    }
+    function nameval() {
+      var name = document.getElementById('fname').value;
+      var minNumberofChars = 3;
+      var maxNumberofChars = 15;
+
+      if (name.length < minNumberofChars || name.length > maxNumberofChars) {
+        document.getElementById('message').innerHTML = "name should contain at least 3 character and less than 15.";
+        return false;
+      } else {
+        document.getElementById('message').innerHTML = "";
+        return true;
+      }
+    }
+    function nameval2() {
+      var name2 = document.getElementById('fname3').value;
+      var minNumberofChars = 10;
+      var maxNumberofChars = 20;
+
+      if (name2.length < minNumberofChars || name2.length > maxNumberofChars) {
+        document.getElementById('message3').innerHTML = "subject should contain at least 10 character and less than 30.";
+        return false;
+      } else {
+        document.getElementById('message3').innerHTML = "";
+        return true;
+      }
+    }
+    function ValidText() {
+      var textarea = document.getElementById('fname2').value;
+      var len = 20;
+      if (textarea.length < len || textarea.length == len) {
+        document.getElementById('message2').innerHTML = "textarea should be more than 20 char.";
+        return false;
+      } else {
+        document.getElementById('message2').innerHTML = "";
+        return true;
+      }
+    }
+    function changeTheme() {
+        //
+        //دالة تغير الوضع
+        //التاثير علي الصوره تغير لونها مع تغير الوضع 
+        
+        var c=document.getElementById('switch-btn').checked;
+        if(c===true){
+          document.getElementById('css').setAttribute('href','/stylesheets/styles.css');
+          document.getElementById("salman").style.borderColor='#9e9e9e7d';
+        }else if(c !==true){
+          document.getElementById('css').setAttribute('href','/stylesheets/stylelight.css');
+          document.getElementById("salman").style.borderColor='red';
+         
+         
+        }
+
+    }
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>course</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+</head>
+
+
+<body>
+
+
+
+
+
+  <body>
+
+    <!--header-->
+    <header class="header">
+      <div class=" top d-flex flex-wrap  align-items-center justify-content-center justify-content-md-between py-1  border-bottom bg-dark">
+        <div class="col-lg-12 text-center text-light">
+          <a href="#" class=" align-items-center col-md-0 mb-2 ml-0 mb-md-0 text-light text-decoration-none ">
+            <h1><i class="fas fa-briefcase"></i> لوحة التحكم</h1>
+          </a>
+        </div>
+
+
+        <button class="navbar-toggler position-absolute text-light d-md-none collapsed  col-2 " style="float: left;" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="عرض/إخفاء لوحة التنقل">
+          <span class="navbar-toggler-icon  navbar-toggler-danger"></span>
+        </button>
+        <!--navbar-->
+
+        <!--end navbar-->
+
+      </div>
+      </div>
+
+    </header>
+    <!-- end  header -->
+
+    <!--startbody-->
+    <div class="row w-100 m-0  " style="direction: rtl;">
+      <nav id="sidebarMenu" style="height: 100vw;" class="col-md-3 col-lg-2 d-md-block h-100%  bg-dark text-light sidebar collapse">
+        <div class="position-relitave pt-3 text-center">
+          <ul class="nav flex-column text-center m-0" style="direction: ltr;">
+            <li class="nav-item m-2 text-end">
+              <a class="nav-link active btn btn-outline-warning text-dark p-2" aria-current="page" href="persodata.html">
+
+                المعلومات الشخصية
+              </a>
+            </li>
+            <li class="nav-item m-2 text-end">
+              <a class="nav-link active btn btn-outline-warning text-dark p-2" aria-current="page" href="works">
+
+                الاعمال
+              </a>
+            </li>
+            <li class="nav-item m-2 text-end">
+                <a class="nav-link active btn btn-outline-warning text-dark p-2" aria-current="page" href="services">
+  
+                  الخدمات
+                </a>
+              </li>
+            <li class="nav-item m-2 text-end">
+              <a class="nav-link active btn btn-outline-warning text-dark p-2" aria-current="page" href="experance">
+                الخبرات
+
+              </a>
+            </li>
+            <li class="nav-item m-2 text-end">
+              <a class="nav-link active btn btn-outline-warning text-dark p-2" aria-current="page" href="skills">
+
+                الموهلات
+              </a>
+            </li>
+
+
+
+          </ul>
+
+
+        </div>
+      </nav>
+      <div class="container course col-9 mt-4">
+        <h1 class="headerh text-center text-dark mb-3 ">الاعمال </h1>
+        <hr>
+        <div class="table-responsive  text-light  " style="direction: rtl;">
+
+        </div>
+        <div class="container row row-cols-1 row-cols-sm-12 row-cols-md-1 row-cols-lg-12 g-4 py-5" style="direction: rtl;">
+
+         
+
+            <div class="album py-5 bg-light">
+                <div class="container">
+            
+                  <div class="row row-cols-12 row-cols-sm-2 row-cols-md-3 g-3">
+                  
+                   
+                    <% for( let index=0; index < services.length; index++ ) { %>
+                    <div class="col">
+                       
+                      <div class="card shadow-sm">
+                        <img height="250px" width="100%" src="/images1/<%= services[index].image %>">
+            
+                        <div class="card-body">
+                          <p class="card-text"><%= services[index].name %></p>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#editModal<%=services[index]._id%>"><i class="fa fa-edit"></i> تعديل</a>
+                            <a href="#" class="btn btn-danger confirm" data-bs-toggle="modal"
+                            data-bs-target="#modalChoice"> <i
+                                    class="fa fa-close"></i> حذف</a>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal fade mt-0" tabindex="-1" role="dialog" id="modalChoice">
+                        <div class="modal-dialog" role="document" style="margin-top: 15%;">
+                            <div class="modal-content rounded-4 shadow m-50">
+                                <div class="modal-body p-4 text-dark text-center">
+                                    <h5 class="mb-0"> هل انت متاكد<br>من عملية الحذف؟</h5>
+                                    <p class="mb-0"> .</p>
+                                </div>
+                                <div class="modal-footer flex-nowrap p-0">
+                                   
+                                        <a href="/works/delete/<%=services[index]._id%>" class="btn bg-danger btn-lg btn-link btn-outline-primary text-dark fs-6 text-decoration-none col-6 m-0 rounded-0 border"> <i
+                                            class="fa fa-close"></i> حذف</a>
+                                    <button type="button"
+                                        class="btn btn-lg btn-link btn-outline-primary text-dark fs-6 text-decoration-none col-6 m-0 rounded-0 border"
+                                        data-bs-dismiss="modal">لا ,تراجع</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+             <!-- Model Edit-->
+             <div class="modal fade" id="editModal<%=services[index]._id%>" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog " style="direction: rtl;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title text-center" id="staticBackdropLabel" style="width: 100%;">تعديل </h5>
+  
+                    </div>
+                    <div class="container">
+                      <form action="/update/services" method="post" enctype="multipart/form-data">
+                        <input type="text" name="id" value="<%=services[index]._id%>">
+                        <div class="row g-3">
+                          <div class="col-12">
+                              <label for="username" class="form-label">اسم الخبره</label>
+                              <div class="input-group has-validation">
+    
+                                <input type="text" class="form-control" name="name" value="<%=services[index].name%>" id="corsname" placeholder=" اسم الخبره " required="">
+                                <div class="invalid-feedback">
+                                  اسم الخبره الجديدة .
+                                </div>
+                              </div>
+                            </div>
+  
+                          <div class="col-12">
+                            <label for="username" class="form-label">اسم الخبره</label>
+                            <div class="input-group has-validation">
+  
+                              <input type="file" class="form-control" name="image" id="corsname"  value="<%=services[index].image%>" placeholder="  lfjv ">
+                              <div class="invalid-feedback">
+                                اسم الخبره الجديدة .
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="col-12">
+                            <label for="email" class="form-label"> التقدير </label>
+                            <input type="text" class="form-control" id="descr" name="descr" value="<%=services[index].descr%>" placeholder="التقدير ">
+                            <div class="invalid-feedback">
+                              يرجى إدخال تقديرك  .
+                            </div>
+                          </div>
+  
+                          <div class="modal-footer">
+                            <button type="submit " class="btn btn-success">تعديل</button>
+                          </div>
+                        </div>
+                      </form>
+  
+                    </div>
+                  </div>
+                </div>
+  
+               
+              </div>
+              <% } %>
+            </div>
+          
+          </div>
+        
+        </div>
+                    
+                   
+                    
+                  </div>
+                  <a href="#" class="btn btn-sm btn-primary" style="float: left;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> اضافة خبره </a>
+                </div>
+              </div>
+             
+           
+    
+
+      
+    <!-- Model Add -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="direction: rtl;">
+        <div class="modal-content">
+          <div class="modal-header text-center" col-12>
+            <h5 class="modal-title text-center" id="exampleModalLabel" style="width: 100%;;">اضافة خبره
+            </h5>
+
+          </div>
+          <div class="container">
+            <form action="/services/add" method="post" enctype="multipart/form-data">
+              <div class="row g-3">
+
+
+                <div class="col-12">
+                  <label for="username" class="form-label">اسم الخبره</label>
+                  <div class="input-group has-validation">
+
+                    <input type="text" class="form-control" name="name" id="corsname" placeholder=" العمل" required="">
+                    <div class="invalid-feedback">
+                      اسم الخبره الجديدة .
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="file" class="form-label"> الوصف </label>
+                  <input type="file" class="form-control" name="image" id="file" placeholder="الصوره">
+                  <div class="invalid-feedback">
+                    يرجى إدخال تقدير الخبره .
+                  </div>
+                </div>
+                
+                <div class="col-12">
+                    <label for="descr" class="form-label"> الوصف </label>
+                    <input type="text" class="form-control" name="descr" id="descr" placeholder="ملاحضات">
+                    <div class="invalid-feedback">
+                      يرجى إدخال تقدير الخبره .
+                    </div>
+                  </div>
+
+
+
+
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>اضافة</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Model Edit-->
+
+    
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+  </body>
+
+</html>
