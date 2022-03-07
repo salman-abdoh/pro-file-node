@@ -550,12 +550,11 @@ color: #5a4848;
 }
 .switch {
     position: fixed;
-    margin-left: 56%;
+    margin-left: 250px;
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-top: 2%;
-
+   
 }
 
 .switch input {
@@ -808,4 +807,61 @@ header nav ul {
     }
 
     }
+    /*new skills*/
+    section#contact {
+        background-color: #212529;
+        background-image: url(../assets/img/map-image.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .section-title {
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    .section-title h2 {
+        font-size: 32px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+    .section-title h2::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: hsl(45deg 93% 77%);
+        bottom: 0;
+        left: calc(50% - 25px);
+    }
     
+    .skills .progress {
+        height: 60px;
+        display: block;
+        background: none;
+        border-radius: 0;
+    }
+    .skills .progress .skill {
+        padding: 10px 0;
+        margin: 0 0 6px 0;
+        text-transform: uppercase;
+        display: block;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+        color: #222222;
+    }
+    .skills .progress .skill .val {
+        float: right;
+        font-style: normal;
+    }
+    .skills .progress-bar-wrap {
+        background: #f3f3f3;
+    }
+    .skills .progress-bar {
+        width: 1px;
+        height: 10px;
+        transition: 0.9s;
+        background-color: hsl(45deg 93% 77%);
+    }

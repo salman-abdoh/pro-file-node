@@ -51,7 +51,7 @@
         <div class="position-relitave pt-3 text-center">
           <ul class="nav flex-column text-center m-0" style="direction: ltr;">
             <li class="nav-item m-2 text-end">
-              <a class="nav-link active btn btn-outline-warning text-dark p-2" aria-current="page" href="persodata.html">
+              <a class="nav-link active btn btn-outline-warning text-dark p-2" aria-current="page" href="persodata">
 
                 المعلومات الشخصية
               </a>
@@ -100,7 +100,10 @@
 
             <% for( let index=0; index < experance.length; index++ ) { %>
                 <div class="col d-flex align-items-start">
-            <div>
+            <div style="width: 200px;
+            border: 1px solid #c3bfbf;
+            border-radius: 5px;
+            padding: 9px;">
               <h4 class="fw-bold mb-0"> <%= experance[index].name %></h4>
               <br>
               <div class="align-middle">
@@ -111,7 +114,8 @@
                     </div>
                   </div>
                   <div class="progress">
-                    <div width="" style='width:<%= experance[index].degree %>px;' class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="<%= experance[index].degree %>" aria-valuemin="<%= experance[index].degree %>" aria-valuemax="<%= experance[index].degree %>"></div>
+                    <div style="width:<%= experance[index].degree %>%"  class="progress-bar bg-gradient-warning" role="progressbar" 
+                      aria-valuenow="<%= experance[index].degree %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
 

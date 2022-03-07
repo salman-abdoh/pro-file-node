@@ -1,187 +1,95 @@
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+// Load User model
+const User = require('../models/User');
+const { forwardAuthenticated } = require('../config/auth');
 
-   
-var express = require('express');
-var router = express.Router();
-const {check,validationResult}=require('express-validator');
-const User=require('../models/User');
-const passport=require('passport');
-const multer=require('multer');
+// Login Page
+router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
+// Register Page
+router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
+// Register
+router.post('/register', (req, res) => {
+  const { name, email, password, password2 } = req.body;
+  let errors = [];
 
-//middleware to check if user is login
-isAuthenticated=(req,res,next)=>{
-  if (req.isAuthenticated()) {
-    return next();
-    
+  if (!name || !email || !password || !password2) {
+    errors.push({ msg: 'Please enter all fields' });
   }
+
+  if (password != password2) {
+    errors.push({ msg: 'Passwords do not match' });
+  }
+
+  if (password.length < 6) {
+    errors.push({ msg: 'Password must be at least 6 characters' });
+  }
+
+  if (errors.length > 0) {
+    res.render('register', {
+      errors,
+      name,
+      email,
+      password,
+      password2
+    });
+  } else {
+    User.findOne({ email: email }).then(user => {
+      if (user) {
+        errors.push({ msg: 'Email already exists' });
+        res.render('register', {
+          errors,
+          name,
+          email,
+          password,
+          password2
+        });
+      } else {
+        const newUser = new User({
+          name,
+          email,
+          password
+        });
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then(user => {
+                req.flash(
+                  'success_msg',
+                  'You are now registered and can log in'
+                );
+                res.redirect('/users/login');
+              })
+              .catch(err => console.log(err));
+          });
+        });
+      }
+    });
+  }
+});
+
+// Login
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/persodata',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+// Logout
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
-}
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
 });
-//login
-router.get('/login', function(req, res, next) {
-  var massagesError=req.flash('loginError');
-  
-  res.render('user/login', { massages : massagesError });
-});
-router.post('/login',[
-  check('email').not().isEmpty().withMessage('please enter your email'),
-  check('email').isEmail().withMessage('please enter valid email'),
-  check('password').not().isEmpty().withMessage('please enter your password'),
-  check('password').isLength({min : 5}).withMessage('password must be more than 5 char'),
-
-],(req,res,next)=>{
-  const errors=validationResult(req);
-  if (! errors.isEmpty()) {
-    var validationMassages=[];
-    for (let i = 0; i < errors.errors.length; i++) {
-      validationMassages.push(errors.errors[i].msg)
-      
-    }
-    req.flash('loginError',validationMassages);
-    res.redirect('login');
-    console.log(validationMassages);
-    return;
-  }
-  next();
-
-},passport.authenticate('local-login',{
-  successRedirect: 'profile',
-  failureRedirect: 'login',
-  failureFlash: true,
-
-}));
-
-// sign up form 
-router.get('/signIn', (req,res)=> {
-  res.render('user/signIn', {
-      error: req.flash('error')
-  })
-})
-
-// sign up post request
-
-router.post('/signIn',
-passport.authenticate('local-signup', {
-  successRedirect: '/users/profile',
-    failureRedirect: '/users/signIn',
-    failureFlash: true })
-    )
-
-
-//profile
-router.get('/profile', isAuthenticated,function(req, res, next) {
-  res.render('user/profile', { title: 'sofan' });
-  
-});
-//upload user img
-router.post('/uploadavtar',upload.single('avatar'),function(req, res, next) {
-  let newFields = {
-    avatar: req.file.filename,
-    name:req.body.name,
-    email:req.body.email,
-    password:req.body.password,
-  }
-  User.updateOne( {_id: req.user._id}, {$set:newFields}, (err)=> {
-    if (!err) {
-      res.redirect('/users/profile')
-    }
-
-  } )
-  
-});
-
-//skills
-router.get('/skills',isAuthenticated, function(req, res, next) {
-  Skills.find({},(error,result)=>{
-    if (error) {
-      console.log(error);
-      res.redirect('skills');
-      
-    }
-    res.render('user/skills', { items: result });
-    console.log(result[2]);
-    
-    
-
-  })
-});
-router.post('/add', function(req, res, next) {
-  var skills=new Skills({
-    title : req.body.Atitle,
-    level: req.body.Alevel,
-  });
-  skills.save((error,result)=>{
-    if (error) {
-      console.log(error);
-      res.redirect('skills');
-      return;
-      
-    }
-    console.log(result);
-    res.redirect('skills');
-    
-
-  });
-  
-  
-});
-
-//update skills
-router.post('/update',isAuthenticated, function(req, res, next) {
-  const ID=req.body.id;
-  const updatedSkills={
-    title:req.body.title,
-    level:req.body.level,
-  }
-  Skills.updateOne({_id:ID},{$set:updatedSkills},(error,doc)=>{
-    if (error) {
-      console.log(error);
-      res.redirect('skills');
-      return;
-      
-    }
-    console.log(doc);
-    res.redirect('skills');
-
-  })
-  
-});
-
-//delete skills
-router.post('/delete',isAuthenticated, function(req, res, next) {
-  const ID=req.body.id;
-  console.log(ID);
- 
-  Skills.deleteOne({_id:ID},(error,doc)=>{
-    if (error) {
-      console.log(error);
-      res.redirect('skills');
-      return;
-      
-    }
-    console.log(doc);
-    res.redirect('skills');
-
-  })
-  
-});
-//logout
-router.get('/logout',(req,res)=>{
-  req.logOut();
-  res.redirect('/users/login');
-})
-
-
-//services 
-router.get('/services',(req,res)=>{
-  
-  res.render('user/services');
-})
-
-
 
 module.exports = router;

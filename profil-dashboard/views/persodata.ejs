@@ -25,9 +25,9 @@
         <header class="header">
             <div
                 class=" top d-flex flex-wrap  align-items-center justify-content-center justify-content-md-between py-1  border-bottom bg-dark">
-                <div class="col-lg-2 text-center text-light">
-                    <a href="#" class=" align-items-center col-md-0 mb-2 ml-0 mb-md-0 text-light text-decoration-none ">
-                        <h1><i class="fas fa-briefcase"></i> توظيف</h1>
+                <div class="col-lg-12 text-center text-light">
+                    <a href="#" class=" align-items-center col-md-0 mb-2 ml-0 mb-md-0 text-light text-decoration-none text-center ">
+                        <h1><i class="fas fa-briefcase"></i> لوحة التحكم</h1>
                     </a>
                 </div>
 
@@ -96,88 +96,121 @@
 
             </div>
         </nav>
-            <div class="container course col-9 mt-4">
+            <div class="container course col-9  cols-sm-12 mt-4">
                 <h1 class="headerh text-center text-dark mb-3 ">المعلومات الشخصية </h1>
                 <hr>
-                <div class="table-responsive  text-light  " style="direction: rtl;">
-                    <div class="bd-example">
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item">الاسم الاول : سلمان</li>
-                          <li class="list-group-item"> اللقب : الوجية</li>
-                          <li class="list-group-item"> الايميل : salmanalwageeh@gmail.com</li>
-                          <li class="list-group-item"> رقم الهاتف : 773287037</li>
-                          <li class="list-group-item"> التخصص : تكنولوجيا معلومات</li>
-                          <li class="list-group-item">  العنوان : صنعاء</li><hr>
+                <% for( let index=0; index < persodata.length; index++ ) { %>
+                <div class="table-responsive row  text-light  " style="direction: rtl;">
+                    <div class=" col-lg-4 cols-sm-12 ">
+                        <img height="250px" width="100%" src="/images1/<%= persodata[index].image %>">
+            
+                       
+                      </div>
+                    <div class="bd-example col-lg-8  cols-sm-12 ">
+                     
+                           
+                        <ul class="list-group list-group-flush ">
+                          <li class="list-group-item">الاسم الاول :  <%= persodata[index].fname %></li>
+                          <li class="list-group-item"> اللقب :  <%= persodata[index].lname %></li>
+                          <li class="list-group-item"> الايميل :  <%= persodata[index].email %></li>
+                          <li class="list-group-item"> رقم الهاتف :  <%= persodata[index].phonenumber %></li>
+                          <li class="list-group-item"> التخصص :  <%= persodata[index].major %> </li>
+                          <li class="list-group-item">  العنوان :  <%= persodata[index].address %></li><hr>
+                        <!-- Model Edit-->
+            <div class="modal fade" id="editModal<%=persodata[index]._id%>" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog " style="direction: rtl;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title text-center" id="staticBackdropLabel" style="width: 100%;">تعديل </h5>
+  
+                    </div>
+                    <div class="container">
+                      <form action="/update/persodata" method="post" enctype="multipart/form-data">
+                        <input type="text" name="id" value="<%=persodata[index]._id%>">
+                        <div class="row g-3">
+  
+                            <div class="col-12">
+                                <label for="file" class="form-label"> الصورة </label>
+                                <input type="file" class="form-control" name="image"  value="<%=persodata[index].image%>" id="file" placeholder="الصوره">
+                                <div class="invalid-feedback">
+                                  يرجى إدخال الصوره  .
+                                </div>
+                              </div>
+                          <div class="col-12">
+                            <label for="username" class="form-label">الاسم الاول </label>
+                            <div class="input-group has-validation">
+  
+                              <input type="text" class="form-control" name="fname" value="<%=persodata[index].fname%>" id="corsname" placeholder=" اسم الخبره " required="">
+                              <div class="invalid-feedback">
+                                الاسم  الاول  .
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="col-12">
+                            <label for="email" class="form-label"> اللقب </label>
+                            <input type="text" class="form-control" id="descr" name="lname" value="<%=persodata[index].lname%>" placeholder="التقدير ">
+                            <div class="invalid-feedback">
+                              يرجى إدخال اللقب  .
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <label for="email" class="form-label"> الايميل </label>
+                            <input type="text" class="form-control" id="descr" name="email" value="<%=persodata[index].email%>" placeholder="التقدير ">
+                            <div class="invalid-feedback">
+                              يرجى إدخال الايميل  .
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <label for="email" class="form-label"> الهاتف </label>
+                            <input type="text" class="form-control" id="descr" name="phonenumber" value="<%=persodata[index].phonenumber%>" placeholder="التقدير ">
+                            <div class="invalid-feedback">
+                              يرجى إدخال الهاتف  .
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <label for="email" class="form-label"> التخصص </label>
+                            <input type="text" class="form-control" id="descr" name="major" value="<%=persodata[index].major%>" placeholder="التقدير ">
+                            <div class="invalid-feedback">
+                              يرجى إدخال التخصص  .
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <label for="email" class="form-label"> العنوان </label>
+                            <input type="text" class="form-control" id="descr" name="address" value="<%=persodata[index].address%>" placeholder="التقدير ">
+                            <div class="invalid-feedback">
+                              يرجى إدخال العنوان  .
+                            </div>
+                          </div>
+  
+                          <div class="modal-footer">
+                            <button type="submit " class="btn btn-success">تعديل</button>
+                          </div>
+                        </div>
+                      </form>
+  
+                    </div>
+                  </div>
+                </div>
+  
+               
+              </div>
+            
+             
                         </ul>
+                        <a href="#" class="btn btn-success" style="float: left;" data-bs-toggle="modal"
+                        data-bs-target="#editModal<%=persodata[index]._id%>"><i class="fa fa-edit" ></i> تعديل</a>
+                        <% } %>
                         </div>
                 </div>
-                <a href="#" class="btn btn-success" style="float: left;" data-bs-toggle="modal"
-                data-bs-target="#editModal"><i class="fa fa-edit" ></i> تعديل</a>
+              
             </div>
 
 
 
         </div>
-        <!-- Modal Add -->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog "style="direction: rtl;">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <h5 class="modal-title text-center" id="staticBackdropLabel" style="width: 100%;"> تعديل البيانات الشخصية </h5>
-                       
-                    </div>
-                    <div class="container">
-                        <form action="skills.html" method="post">
-                            <div class="row g-3">
-
-
-                                <div class="col-12">
-                                    <label for="username" class="form-label">الاسم الاول</label>
-                                    <div class="input-group has-validation">
-
-                                        <input type="text" class="form-control" id="corsname" placeholder=" سلمان "
-                                            required="">
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="email" class="form-label"> اللقب </label>
-                                    <input type="email" class="form-control" id="descr" placeholder=" الوجية">
-                                   
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="address" class="form-label">الايميل</label>
-                                    <input type="email" class="form-control" id="date" placeholder=" salmanalwageeh@gmail.com "
-                                        required="">
-                                  
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="address2" class="form-label"> رقم الهاتف</label>
-                                    <input type="text" class="form-control" id="phone" placeholder=" 773287037">
-                                </div>
-                                <div class="col-12">
-                                    <label for="address" class="form-label"> العنوان </label>
-                                    <input type="text" class="form-control" id="plase" placeholder=" صنعاء">
-                                </div>
-                                <div class="col-12">
-                                    <label for="address" class="form-label"> التخصص </label>
-                                    <input type="text" class="form-control" id="collage" placeholder=" تكنولوجيا معلومات">
-                                </div>
-                               
-
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">تعديل<i class="fa fa-edit"></i> </button>
-                                </div>
-                            </div>
-                        </form>
-                    
-                </div>
-            </div>
+       
            
 
             <!-- End Qualification Page -->

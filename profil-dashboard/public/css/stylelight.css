@@ -543,11 +543,11 @@ footer ul li{
 }
 .switch {
     position: fixed;
-    margin-left: 56%;
+    margin-left: 250px;
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin-top: 2%;
+   
 
 }
 
