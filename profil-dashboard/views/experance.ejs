@@ -114,7 +114,7 @@
                     </div>
                   </div>
                   <div class="progress">
-                    <div style="width:<%= experance[index].degree %>%"  class="progress-bar bg-gradient-warning" role="progressbar" 
+                    <div style ="width: <%= experance[index].degree %>%;"  class="progress-bar bg-gradient-warning" role="progressbar" 
                       aria-valuenow="<%= experance[index].degree %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
@@ -122,12 +122,12 @@
               </div>
               <div class="text-left" style="direction: ltr;"><br>
                 <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<%=experance[index]._id%>"><i class="fa fa-edit"></i> تعديل</a>
-                <a href="#"  data-bs-toggle="modal" data-bs-target="#modalChoice" class="btn btn-danger confirm"> <i class="fa fa-close"></i> حذف</a>
+                <a href="#"  data-bs-toggle="modal" data-bs-target="#modalChoice<%= experance[index].name %>" class="btn btn-danger confirm"> <i class="fa fa-close"></i> حذف</a>
               </div>
             </div>
             
            </div>
-           <div class="modal fade mt-0" tabindex="-1" role="dialog" id="modalChoice">
+           <div class="modal fade mt-0" tabindex="-1" role="dialog" id="modalChoice<%= experance[index].name %>">
             <div class="modal-dialog" role="document" style="margin-top: 15%;">
                 <div class="modal-content rounded-4 shadow m-50">
                     <div class="modal-body p-4 text-dark text-center">
